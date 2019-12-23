@@ -48,6 +48,16 @@ describe.only('Auth endpoints', () => {
             error: `Missing '${field}' in request body`,
           })
       })
+
+      it(`responds 400 'invalid user_name or password'`, () => {
+        const userInvalidUser = { user_name: 'wrongUser', password: 'existy' }
+        return supertest(app)
+          .post('/api/auth/login')
+          .send(userInvalidUser)
+          .expect(400, {
+            error: `Incorrect user_name or password`
+          })
+      })
     })
   })
 })
