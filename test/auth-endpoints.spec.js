@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const app = require('../src/app')
 const helpers = require('./test-helpers')
 
-describe.only('Auth endpoints', () => {
+describe('Auth endpoints', function() {
   let db
 
   const { testUsers } = helpers.makeArticlesFixtures()  // same as const testUsers = helpers.makeArticlesFixtures.testUsers
@@ -49,9 +49,10 @@ describe.only('Auth endpoints', () => {
             error: `Missing '${field}' in request body`,
           })
       })
+    })
 
       it(`responds 400 'Incorrect user_name or password' when bad user_name`, () => {
-        const userInvalidUser = { user_name: 'wrongUser', password: 'existy' }
+        const userInvalidUser = { user_name: 'user-not', password: 'existy' }
         return supertest(app)
           .post('/api/auth/login')
           .send(userInvalidUser)
@@ -91,5 +92,5 @@ describe.only('Auth endpoints', () => {
       })
 
     })
-  })
+  
 })
