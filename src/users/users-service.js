@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/
 
 const UsersService = {
@@ -26,6 +27,11 @@ const UsersService = {
       .first()
       .then(user => !!user)
   },
+  postNewUser(db, user) {
+    return db('blogful_users')
+      .insert(user)
+      .into('blog')
+  }
 }
 
 module.exports = UsersService
