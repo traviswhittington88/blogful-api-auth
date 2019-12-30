@@ -33,7 +33,7 @@ const UsersService = {
     return db
       .insert(newUser)
       .into('blogful_users')
-      .return('*')
+      .returning('*')
       .then(([user]) => user)
   },
   serializeUser(user) {
