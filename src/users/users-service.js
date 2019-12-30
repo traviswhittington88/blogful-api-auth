@@ -27,10 +27,12 @@ const UsersService = {
       .first()
       .then(user => !!user)
   },
-  postNewUser(db, user) {
-    return db('blogful_users')
-      .insert(user)
-      .into('blog')
+  insertUser(db, newUser) {
+    return db
+      .insert(newUser)
+      .into('blogful_users')
+      .return('*')
+      .then(([user]) => user)
   }
 }
 
