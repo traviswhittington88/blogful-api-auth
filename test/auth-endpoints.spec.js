@@ -80,6 +80,7 @@ describe('Auth endpoints', function() {
           { user_id: testUser.user_id }, //payload  
           process.env.JWT_SECRET,   //secret
           { subject: testUser.user_name,  //header: includes alg & sub, payload can also contain sub
+            expiresIn: process.env.JWT_EXPIRY,
             algorithm: 'HS256',           //header can also include 'type' e.g. typ: "JWT"
           }
         )
