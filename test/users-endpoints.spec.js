@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs') //to test passwords are hashed
 const helpers = require('../test/test-helpers')
 const app = require('../src/app')
 
-describe.only('Users endpoints', function() {
+describe('Users endpoints', function() {
   let db
 
   const { testUsers } = helpers.makeArticlesFixtures()
