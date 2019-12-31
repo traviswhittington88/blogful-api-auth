@@ -1,5 +1,6 @@
 const express = require('express')
 const AuthService = require('../auth/auth-service')
+const { requireAuth } = require('../middleware/jwt-auth')
 
 const authRouter = express.Router()
 const jsonBodyParser = express.json()
@@ -42,7 +43,7 @@ authRouter
 })
 
 authRouter
-  .post('/refresh', jsonBodyParser, (req, req, next) => {
+  .post('/refresh', requireAuth, (req, req) => {
     const sub = req.user.user_name
     const payload = { user_id: req.user.id }
 
